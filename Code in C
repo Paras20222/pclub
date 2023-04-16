@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+
+typedef struct {
+    char make[100];
+    char model[100];
+    int year;
+    int speed;
+    int x;
+    int y;
+} Car;
+
+void accelerate(Car *car, int speed_increment) {
+    car->speed += speed_increment;    }
+void brake(Car *car, int speed_decrement) {
+    car->speed -= speed_decrement;    }
+void move(Car *car) {
+    car->x += car->speed;
+    car->y += car->speed;    }
+int detect_collision(Car car1, Car car2) {
+    float distance = sqrt(pow(car1.x - car2.x, 2) + pow(car1.y - car2.y, 2));
+    return distance <= 2 * car1.speed; // assuming collision if distance <= 2 * speed    }
+float time_to_collision(Car car1, Car car2) {
+    int relative_speed = car1.speed - car2.speed;
+    if (relative_speed == 0) {
+        return INFINITY; // cars are traveling at the same speed, collision will never occur }
+    else {
+        float distance = sqrt(pow(car1.x - car2.x, 2) + pow(car1.y - car2.y, 2));
+        float time_to_collision = distance / abs(relative_speed);
+        return time_to_collision;
+    }
+}
+
+int main() {
+    Car car1 = {"Hyundai", "Creta", 2015, 50, 0, 0};
+    Car car2 = {"Maruti", "Alto", 2000, 40, 100, 100};
+
+    accelerate(&car1, 10);
+    brake(&car2, 20);
+
+    move(&car1);
+    move(&car2);
+
+    if (detect_collision(car1, car2)) {
+        printf("Collision detected!\n");
+    }
+    else {
+        printf("No collision detected.\n");
+    }
+
+    float time = time_to_collision(car1, car2);
+    printf("Time to collision: %.2f seconds\n", time);
+
+    return 0;
+}
