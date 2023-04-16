@@ -1,2 +1,5 @@
-# pclub
-This repository contains the solution of the taskl assigned along with a README file
+HOW I MADE THE IDEA OF MATHEMATICAL AND SCIENTIFICAL ASPECT OF THIS PROJECT :
+By Using the distance formula (sqrt(pow(car1.x - car2.x, 2) + pow(car1.y - car2.y, 2))), the detect_collision function determines the distance between the two vehicles and assumes that collision will happen if it is less than or equal to twice the speed of the first vehicle.
+Using the same distance formula to get the relative speeds of the two vehicles and their separation in the time_to_collision function. The time until the collision happens is  calculated by dividing the distance by the relative speed's(absolute value). Since the two cars would never collide if the relative speed is 0, we get infinite value of time of collision
+HOW I TESTED THE DATA OF MY CHOICE:
+we have created two Car objects with different attributes and speeds, then called their methods to test their functionality. We accelerated and moved car1, and braked and moved car2. We then checked if car1 and car2 have collided, which returns True as they are close enough to each other
